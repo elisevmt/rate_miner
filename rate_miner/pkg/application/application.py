@@ -14,6 +14,8 @@ class Application:
         self.instructions: Dict[str, ApplicationProgram.__subclasses__] = kwargs
 
     def execute_instruction(self):
+        if len(sys.argv) < 2:
+            raise ValueError("No instruction")
         run_type = sys.argv[1]
         if run_type in self.instructions:
             self.instructions[run_type].run()
