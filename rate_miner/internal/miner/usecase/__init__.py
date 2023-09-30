@@ -1,8 +1,8 @@
 import time
-from ..const import Exchanger
+from rate_miner.internal.exchanger.const import ExchangerEnum
 from ..dto import PairShot, PairTimeLine
 from abc import ABC, abstractmethod
-from typing import Dict, List, Optional
+from typing import Optional
 from rate_miner.internal.miner.usecase.binance import BinanceAPI
 from rate_miner.internal.miner.usecase.okx import OkxAPI
 from rate_miner.internal.miner.usecase.pancakeswap import PancakeSwapAPI
@@ -12,14 +12,14 @@ __all__ = ["BinanceAPI", "OkxAPI", "PancakeSwapAPI", "UniswapAPI"]
 
 
 class UseCase(ABC):
-    def __init__(self, name: Exchanger):
+    def __init__(self, name: ExchangerEnum):
         self.name = name
 
     @abstractmethod
     async def get(self,
                   token_from: str,
                   token_to: str,
-                  exchanger: Exchanger = None,
+                  exchanger: ExchangerEnum = None,
                   time_from: time.time = None,
                   time_to: time.time = None
                   ) -> PairShot:

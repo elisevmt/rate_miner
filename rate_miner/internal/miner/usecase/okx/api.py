@@ -1,18 +1,18 @@
 import time
 from abc import ABC
 from typing import Optional
-from rate_miner.internal.miner import UseCase, Exchanger
+from rate_miner.internal.miner import UseCase, ExchangerEnum
 from rate_miner.internal.miner import dto as miner_structures
 
 
 class OkxAPI(UseCase, ABC):
     def __init__(self):
-        super(OkxAPI, self).__init__(Exchanger.OKX)
+        super(OkxAPI, self).__init__(ExchangerEnum.OKX)
 
     async def get(self,
                   token_from: str,
                   token_to: str,
-                  exchanger: Exchanger = None,
+                  exchanger: ExchangerEnum = None,
                   time_from: time.time = None,
                   time_to: time.time = None
                   ) -> miner_structures.PairShot:

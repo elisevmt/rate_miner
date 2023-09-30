@@ -2,14 +2,14 @@ import time
 import web3
 from abc import ABC
 from typing import Optional
-from rate_miner.internal.miner import UseCase, Exchanger
+from rate_miner.internal.miner import UseCase, ExchangerEnum
 from rate_miner.internal.miner import dto as miner_structures
 from uniswap import Uniswap
 
 
 class UniswapAPI(UseCase, ABC):
     def __init__(self, eth_node: str):
-        super(UniswapAPI, self).__init__(name=Exchanger.UNISWAP)
+        super(UniswapAPI, self).__init__(name=ExchangerEnum.UNISWAP)
         self.web3 = web3.Web3(web3.HTTPProvider(eth_node))
         self.version = 3
         self.uniswap = Uniswap(version=self.version, web3=self.web3, address=None, private_key=None)
@@ -17,7 +17,7 @@ class UniswapAPI(UseCase, ABC):
     async def get(self,
                   token_from: str,
                   token_to: str,
-                  exchanger: Exchanger = None,
+                  exchanger: ExchangerEnum = None,
                   time_from: time.time = None,
                   time_to: time.time = None
                   ) -> miner_structures.PairShot:

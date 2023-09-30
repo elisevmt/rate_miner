@@ -1,7 +1,7 @@
 import enum
 
 
-class Exchanger(enum.Enum):
+class ExchangerEnum(enum.Enum):
     BINANCE = "binance"
     OKX = "okx"
     UNISWAP = "uniswap"
