@@ -22,5 +22,5 @@ class Main(containers.DeclarativeContainer):
                                host=cfg.Server.Host,
                                selector=_selector)
     application = providers.Factory(
-        Application, server=server,
+        Application, server=server
     )
