@@ -4,6 +4,7 @@ from rate_miner.pkg.security import EncryptionManager
 from rate_miner.pkg.application import Application
 from rate_miner.internal import selector
 from rate_miner.pkg.database import Postgresql
+from rate_miner.pkg.database import ClickHouse
 from rate_miner import config
 from rate_miner.pkg import server
 
@@ -15,6 +16,14 @@ class Main(containers.DeclarativeContainer):
                       db=cfg.PostgreSQL.DB,
                       password=cfg.PostgreSQL.Password,
                       user=cfg.PostgreSQL.User)
+    print(cfg.ClickHouse)
+    clickhouse = ClickHouse(
+        host=cfg.ClickHouse.Host,
+        user=cfg.ClickHouse.User,
+        password=cfg.ClickHouse.Password,
+        port=cfg.ClickHouse.Port,
+        database=cfg.ClickHouse.Database
+    )
     _encryption_manager = providers.Singleton(EncryptionManager)
     _selector = providers.Factory(selector.Selector)
     server = providers.Factory(server.ServerAPI,

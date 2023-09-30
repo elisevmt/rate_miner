@@ -12,6 +12,15 @@ class Server:
 
 
 @dataclass
+class ClickHouse:
+    User: str
+    Password: str
+    Port: int
+    Host: str
+    Database: str
+
+
+@dataclass
 class PostgreSQL:
     Host: str
     Port: int
@@ -29,6 +38,7 @@ class BlockChain:
 class Settings:
     Server: Server
     PostgreSQL: PostgreSQL
+    ClickHouse: ClickHouse
 
 
 def load() -> Settings:

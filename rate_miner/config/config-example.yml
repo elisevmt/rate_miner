@@ -12,3 +12,10 @@ PostgreSQL:
 
 BlockChain:
   ETH: "url of ethereum node"
+
+ClickHouse:
+  Port: 8123
+  Host: 127.0.0.1
+  User: 'usr'
+  Password: 'pwd'
+  Database: 'db'
